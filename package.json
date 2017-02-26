@@ -1,0 +1,46 @@
+{
+  "name": "sh-react-graphs",
+  "version": "1.0.0",
+  "description": "A set of d3 graphs for ReactJS application written in TypeScript. ",
+  "main": "./lib/index.js",
+  "js:next":"./es6/index.js",
+  "types":"sh-react-graphs.d.ts",
+  "typings":"sh-react-graphs.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/suhdev/sh-react-graphs.git"
+  },
+  "keywords": [
+    "D3",
+    "Line",
+    "Graph",
+    "Bar",
+    "Chart",
+    "React",
+    "TypeScript."
+  ],
+  "author": "Suhail Abood <suhail.abood@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/suhdev/sh-react-graphs/issues"
+  },
+  "homepage": "https://github.com/suhdev/sh-react-graphs#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.1.0",
+    "node-sass": "^4.5.0",
+    "react-dom": "^15.4.2",
+    "ts-loader": "^2.0.1",
+    "typescript": "^2.2.1",
+    "webpack": "^2.2.1"
+  },
+  "dependencies": {
+    "@types/d3": "^4.5.0",
+    "@types/react": "^15.0.12",
+    "d3": "^4.6.0",
+    "react": "^15.4.2"
+  }
+}

@@ -1,0 +1,39 @@
+$sh-react-tooltip-bg:#fff !default; 
+$sh-react-tooltip-font-size:12px !default;
+$sh-react-tooltip-font-family:sans-serif !default; 
+$sh-react-tooltip-fg:#333 !default; 
+$sh-react-tooltip-padding:5px 10px !default; 
+$sh-react-tooltip-border-color:#ccc !default; 
+$sh-react-tooltip-border:1px solid $sh-react-tooltip-border-color !default; 
+$sh-react-tooltip-caret-size:6px !default; 
+.sh-react-tooltip{
+    position:absolute;
+    display:none;
+    background:$sh-react-tooltip-bg; 
+    border:$sh-react-tooltip-border; 
+    padding:$sh-react-tooltip-padding;
+    font-size:$sh-react-tooltip-font-size;
+    font-family:$sh-react-tooltip-font-family; 
+    margin-top:-(1.4 * $sh-react-tooltip-caret-size);
+    -webkit-transform: translateX(-50%) translateY(-100%);
+    -ms-transform: translateX(-50%) translateY(-100%);
+    -o-transform: translateX(-50%) translateY(-100%);
+    transform: translateX(-50%) translateY(-100%);
+
+    &:before{
+        content:' ';
+        display:block;
+        position:absolute;
+        top:100%;
+        left:50%;
+        width:0px;
+        height:0px;
+        margin-left:- $sh-react-tooltip-caret-size;
+        border:$sh-react-tooltip-caret-size solid transparent; 
+        border-top:$sh-react-tooltip-caret-size solid $sh-react-tooltip-border-color;
+    }
+
+    &[data-visible="true"]{
+        display:block;
+    }
+}
