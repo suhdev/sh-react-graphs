@@ -1,6 +1,6 @@
 {
   "name": "sh-react-graphs",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "A set of d3 graphs for ReactJS application written in TypeScript. ",
   "main": "./lib/index.js",
   "js:next":"./es6/index.js",

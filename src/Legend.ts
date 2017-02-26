@@ -1,5 +1,4 @@
 import {Component,createElement as CE} from 'react'; 
-import {DragSource} from 'react-dnd'; 
 export interface LegendItemDef {
     key?:string;
     label?:string;
@@ -32,21 +31,6 @@ export interface LegendProps {
 
 export interface LegendState {
 
-}
-
-
-const legendSource = {
-    beginDrag(){
-        return {}
-    }
-};
-
-function collect(connect,monitor){
-    return {
-        connectDragSource:connect.dragSource(),
-        connectDragPreview:connect.dragPreview(), 
-        isDragging:monitor.isDragging(), 
-    }
 }
 
 export class Legend extends Component<LegendProps,LegendState>{
@@ -119,6 +103,3 @@ export class Legend extends Component<LegendProps,LegendState>{
         }));
     }
 }
-
-
-export const DraggableLegend = DragSource('Legend',legendSource,collect);  

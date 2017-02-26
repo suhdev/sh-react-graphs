@@ -1,17 +1,4 @@
 import { Component, createElement as CE } from 'react';
-import { DragSource } from 'react-dnd';
-const legendSource = {
-    beginDrag() {
-        return {};
-    }
-};
-function collect(connect, monitor) {
-    return {
-        connectDragSource: connect.dragSource(),
-        connectDragPreview: connect.dragPreview(),
-        isDragging: monitor.isDragging(),
-    };
-}
 export class Legend extends Component {
     // el:HTMLElement;
     // dragging:boolean;
@@ -69,4 +56,3 @@ export class Legend extends Component {
         }));
     }
 }
-export const DraggableLegend = DragSource('Legend', legendSource, collect);
