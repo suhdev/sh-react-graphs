@@ -124,4 +124,56 @@ import {select,selectAll,max,scaleBand,scaleLinear,
         hide();
     }
 
+    import {Selection,line,AxisScale,curveCatmullRom} from 'd3'; 
+
+    export interface DataDef {
+        data:any[]; 
+        color?:string;
+        circleColor?:string;
+    }
+
+    export interface LineChartProps {
+        className?:string;
+        data:DataDef[];
+        marginLeft:number;
+        marginRight:number;
+        marginTop:number;
+        marginBottom:number;
+        xDomain?:[number,number]; 
+        yDomain?:[number,number]; 
+        yAccessor?(e:any,i:number):any;
+        xAccessor?(e:any,i:number):any;
+        getXScale?(domain:number[],range:number[]):AxisScale<any>;
+        getYScale?(domain:number[],range:number[]):AxisScale<any>;
+        defined?(v:any,i:number):boolean; 
+        getTooltipForPoint?(v,i):any;
+        xAxisLabel:string;
+        yAxisLabel:string;
+        xAxisLabelOffset:number;
+        yAxisLabelOffset:number;
+        colors?:string[];
+    }
+
+    export interface LineChartState {
+
+    }
+
+    export interface MarginDef {
+        left?:number;
+        top?:number;
+        right?:number;
+        bottom?:number;
+    }
+
+    export class LineChart extends Component<LineChartProps,LineChartState>{
+        canvas:Selection<any,any,any,any>;
+        svg:Selection<any,any,any,any>;
+        xAxis:Selection<any,any,any,any>;
+        yAxis:Selection<any,any,any,any>;
+        xAxisLabel:Selection<any,any,any,any>;
+        yAxisLabel:Selection<any,any,any,any>;
+        el:HTMLElement;
+        tooltipEl:Tooltip; 
+    }
+
 }
