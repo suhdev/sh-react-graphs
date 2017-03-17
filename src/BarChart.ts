@@ -23,6 +23,8 @@ export interface BarChartProps {
     xAxisLabelOffset?:number;
     yAxisLabelOffset?:number;
     getTooltipForDatum?(e:any,i:number):any;
+    wrapWidth?:number;
+    wrapLabels?:boolean;
 }
 
 export interface BarChartState {
@@ -61,13 +63,38 @@ export class BarChart extends Component<BarChartProps,BarChartState>{
         }
     }
 
+    wrap(text, width) {
+        text.each(function() {
+            var text = select(this),
+                words = text.text().split(/\s+/).reverse(),
+                word,
+                line = [],
+                lineNumber = 0,
+                lineHeight = 1.1, // ems
+                y = text.attr("y"),
+                dy = parseFloat(text.attr("dy")),
+                tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
+            while (word = words.pop()) {
+                line.push(word);
+                tspan.text(line.join(" "));
+                if ((tspan.node() as SVGTSpanElement).getComputedTextLength() > width) {
+                    line.pop();
+                    tspan.text(line.join(" "));
+                    line = [word];
+                    tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+                }
+            }
+        });
+    }
+
     _drawGraph(){
         let {data,marginBottom,
             xDomain,paddingInner,marginLeft,
             yAccessor,xAccessor,marginRight,
             yDomain,xAxisLabel,yAxisLabel,
-            getTooltipForDatum,
+            getTooltipForDatum,wrapLabels,
             xAxisLabelOffset,yAxisLabelOffset,
+            wrapWidth,
             paddingOuter,marginTop} = this.props; 
         let el = this.refs['container'] as HTMLElement; 
         let tooltipEl = this.refs['tooltip'] as HTMLElement; 
@@ -119,7 +146,7 @@ export class BarChart extends Component<BarChartProps,BarChartState>{
         this.xAxisLabelEl
             .attr('transform',`translate(${canvasWidth/2},${(canvasHeight+(xAxisLabelOffset||30))})`)
             .text(xAxisLabel);
-        this.xAxisEl.call(xAxis); 
+        this.xAxisEl.call(xAxis).selectAll('.tick text').call(this.wrap,wrapWidth || xScale.bandwidth()); 
         this.yAxisEl.call(yAxis); 
         if (data && data.length){
             let updateSet = canvas.selectAll('rect.bar-band')

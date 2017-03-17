@@ -32,7 +32,7 @@ import {select,selectAll,max,scaleBand,scaleLinear,
     export interface LegendProps {
         className?:string;
         items:LegendItemDef[];
-        draggable:boolean;
+        draggable?:boolean;
         onItemClick?(e:any,i:number):void; 
         isItemSelected?(e:any,i:number):boolean;
         viewForItem?(e:LegendItemDef,i:number,labelForItem?:GetLabelCallback,
@@ -67,6 +67,8 @@ import {select,selectAll,max,scaleBand,scaleLinear,
         yAxisLabel?:string;
         xAxisLabelOffset?:number;
         yAxisLabelOffset?:number;
+        wrapLabels?:boolean; 
+        wrapWidth?:number;
         getTooltipForDatum?(e:any,i:number):any;
     }
 

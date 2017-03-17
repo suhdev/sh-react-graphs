@@ -20,13 +20,13 @@ export interface OnItemClickCallback {
 export interface LegendProps {
     className?:string;
     items:LegendItemDef[];
-    draggable:boolean;
     onItemClick?(e:any,i:number):void; 
     isItemSelected?(e:any,i:number):boolean;
     viewForItem?(e:LegendItemDef,i:number,labelForItem?:GetLabelCallback,
         onItemClick?:(e:React.SyntheticEvent<any>)=>void,
         isItemSelected?:IsItemSelectedCallback);
     labelForItem?:GetLabelCallback; 
+    draggable?:boolean;
 }
 
 export interface LegendState {
@@ -89,7 +89,7 @@ export class Legend extends Component<LegendProps,LegendState>{
     }
 
     render(){
-        let {className,items,isItemSelected,draggable,
+        let {className,items,isItemSelected,
             labelForItem,viewForItem} = this.props; 
         let isSelected = isItemSelected || this._isItemSelected,
             label = labelForItem || this._labelForItem,
